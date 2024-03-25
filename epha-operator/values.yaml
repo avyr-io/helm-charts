@@ -1,0 +1,24 @@
+image:
+  repository: quay.io/avyr-io/epha-operator
+  pullPolicy: IfNotPresent
+  tag: v1.0
+
+imagePullSecrets:
+replicaCount: 1
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+clusterRole:
+  rules:
+    core:
+      resources: ["pods", "services"]
+      verbs: ["get", "list", "watch", "create", "update", "patch"]
+    apps:
+      resources: ["deployments", "replicasets"]
+      verbs: ["get", "list", "watch", "create", "update", "patch"]
+    epha:
+      resources: ["annotatedobjects", "annotatedobjects/status"]
+      verbs: ["get", "list", "watch", "create", "update", "patch"]

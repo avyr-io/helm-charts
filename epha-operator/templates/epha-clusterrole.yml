@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "epha-operator.fullname" . }}-clusterrole
+rules:
+  - apiGroups: [""]
+    resources: {{ .Values.clusterRole.rules.core.resources | toYaml | nindent 4 }}
+    verbs: {{ .Values.clusterRole.rules.core.verbs | toYaml | nindent 4 }}
+  - apiGroups: ["apps"]
+    resources: {{ .Values.clusterRole.rules.apps.resources | toYaml | nindent 4 }}
+    verbs: {{ .Values.clusterRole.rules.apps.verbs | toYaml | nindent 4 }}
+  - apiGroups: ["epha.avyr.io"]
+    resources: {{ .Values.clusterRole.rules.epha.resources | toYaml | nindent 4 }}
+    verbs: {{ .Values.clusterRole.rules.epha.verbs | toYaml | nindent 4 }}
